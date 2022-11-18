@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const Book = require('./bookModel');
 const slugify = require('slugify');
 
 const postSchema = new mongoose.Schema(
@@ -21,12 +22,22 @@ const postSchema = new mongoose.Schema(
       type: Number,
       default: 0
     },
-    rating: {
+    vote: {
       type: Number,
-      default: 2.5,
-      min: 0,
-      max: 5
+      default: 0
     },
+    voters: [
+      {
+        voter_id: {
+          type: Schema.Types.ObjectId,
+          ref: 'User'
+        },
+        action: {
+          type: String,
+          enum: ['like', 'hate', 'none']
+        }
+      }
+    ],
     author: {
       type: Schema.Types.ObjectId,
       ref: 'User'
@@ -36,9 +47,6 @@ const postSchema = new mongoose.Schema(
       type: Schema.Types.ObjectId,
       ref: 'Book'
       // required: true,
-    },
-    status: {
-      type: Boolean
     }
   },
   { timestamps: true }
@@ -49,6 +57,25 @@ postSchema.pre('save', function (next) {
   let id = new String(this._id);
   id = id.substring(id.length - 12); // lay 12 ky tu cuoi trong id
   this.slug = slugify(`${this.title}-${id}`, { lower: true, locale: 'vi' });
+  next();
+});
+
+postSchema.post('save', async function (doc, next) {
+  const book = await Book.findByIdAndUpdate(this.book, {
+    $push: { postReview: this._id },
+    $inc: { reviewsQuantity: 1 }
+  });
+  console.log(book);
+  next();
+});
+
+postSchema.post('findOneAndDelete', async function (doc, next) {
+  console.log(doc);
+  const book = await Book.findByIdAndUpdate(doc.book, {
+    $pull: { postReview: doc._id },
+    $inc: { reviewsQuantity: -1 }
+  });
+  console.log(book);
   next();
 });
 

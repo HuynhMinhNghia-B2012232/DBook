@@ -8,6 +8,8 @@ router
   .route('/posts-of-me')
   .get(authController.protect, postController.getAllPostsOfMe);
 
+router.route('/vote').patch(authController.protect, postController.votePost);
+
 router
   .route('/')
   .get(postController.getAllPosts)
