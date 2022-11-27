@@ -151,8 +151,10 @@ export default {
       this.$router.push({ name: "post.update", params: { slug } });
     },
     checkAuthor() {
-      const userId = JSON.parse(localStorage.User)._id;
-      if (userId && userId === this.post.author._id) this.isAuthor = true;
+      if(localStorage.User){
+        const userId = JSON.parse(localStorage.User)._id;
+        if (userId && userId === this.post.author._id) this.isAuthor = true;
+      }
     },
     sendErrorMessage(data) {
       console.log("chay loi")

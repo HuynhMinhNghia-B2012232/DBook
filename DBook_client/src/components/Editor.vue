@@ -133,7 +133,7 @@ export default {
   },
 };
 </script>
-<style lang="css" scoped>
+<style lang="css">
 /* Basic editor styles */
 .ProseMirror > * + * {
   margin-top: 0.75em;
@@ -158,9 +158,6 @@ export default {
 }
 .extension-section button {
   margin-right: 0.5rem;
-}
-img {
-  max-width: 630px;
 }
 </style>
 

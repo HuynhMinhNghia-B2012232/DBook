@@ -63,6 +63,7 @@ export default {
 <style scoped>
 .wall-img {
   width: 100%;
+  max-width: 1110px;
   height: 25vh;
   object-fit: cover;
   display: block;
