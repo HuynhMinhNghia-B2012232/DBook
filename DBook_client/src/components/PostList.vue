@@ -13,9 +13,9 @@
         <div class="card-body">
           <h5 class="card-title" :title="post.title">{{ post.title }}</h5>
           <div class="info-container">
-            <span class="author-name pl-2"
-              ><strong>{{ post.author.name }}</strong></span
-            >
+            <span class="author-name pl-2">
+              <!-- <strong>{{ post.author.name }}</strong> -->
+            </span>
             <span class="view-post pl-2">
               <font-awesome-icon icon="fa-solid fa-eye" />
               {{ post.viewsQuantity }}

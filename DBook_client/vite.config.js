@@ -12,12 +12,13 @@ export default defineConfig({
     },
   },
   server: {
-    port: 8008,
+    port: 8080,
     proxy: {
       "/api": {
-        target: "http://localhost:3000/",
+        target: "https://dbook-server.onrender.com/",
         changeOrigin: true,
       },
     },
   },
+  base: process.env.NODE_ENV === "production" ? "/DBook/" : "./",
 });
