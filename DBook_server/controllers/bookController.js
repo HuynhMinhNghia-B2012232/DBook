@@ -12,7 +12,6 @@ exports.getAllBooks = catchAsync(async (req, res, next) => {
     .paginate();
   const books = await features.query;
 
-  const photo = 'https://robohash.org/nghia?gravatar=yes';
   res.status(200).json({
     status: 'success',
     reqAt: req.requestTime,

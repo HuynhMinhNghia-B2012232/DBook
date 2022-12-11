@@ -12,11 +12,12 @@ export default defineConfig({
     },
   },
   server: {
-    port: 8080,
     proxy: {
       "/api": {
         target: "https://dbook-server.onrender.com/",
         changeOrigin: true,
+        secure: false,
+        ws: true,
       },
     },
   },

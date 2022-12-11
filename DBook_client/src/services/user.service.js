@@ -1,7 +1,7 @@
 import createApiClient from "./api.service";
 
 class UserService {
-  constructor(baseUrl = "/api/v1/users") {
+  constructor(baseUrl = "https://dbook-server.onrender.com/api/v1/users") {
     this.api = createApiClient(baseUrl);
   }
   async login(data) {

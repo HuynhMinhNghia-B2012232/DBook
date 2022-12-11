@@ -1,6 +1,8 @@
 {
   "name": "dbook-client",
   "version": "0.0.0",
+  "proxy": "https://dbook-server.onrender.com/",
+  "homepage": "https://dusthuynh.github.io/DBook/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

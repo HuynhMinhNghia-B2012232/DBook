@@ -1,7 +1,7 @@
 import createApiClient from "./api.service";
 
 class ContactService {
-  constructor(baseUrl = "/api/v1/books") {
+  constructor(baseUrl = "https://dbook-server.onrender.com/api/v1/books") {
     this.api = createApiClient(baseUrl);
   }
   async getAll() {

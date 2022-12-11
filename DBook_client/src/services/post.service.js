@@ -1,7 +1,7 @@
 import createApiClient from "./api.service";
 
 class ContactService {
-  constructor(baseUrl = "/api/v1/posts") {
+  constructor(baseUrl = "https://dbook-server.onrender.com/api/v1/posts") {
     this.api = createApiClient(baseUrl);
   }
   async getAll() {
@@ -14,7 +14,9 @@ class ContactService {
   async create(data) {
     try {
       const res = await this.api.post("/", data, {
-        headers: { Authorization: localStorage.getItem("SavedToken") },
+        headers: {
+          Authorization: localStorage.getItem("SavedToken"),
+        },
       });
       return res.data.data;
     } catch (err) {
